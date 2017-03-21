@@ -111,7 +111,7 @@ static int backlight_notify(struct device *dev, int brightness)
 	}else if (brightness >= 158 && brightness < 222){
 	  brightness = 225;
 	}else if (brightness >= 222 && brightness < 256){
-	  brightness = 231;
+	  brightness = 255;
 	}else{
 	  return 0;
 	}

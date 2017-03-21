@@ -219,7 +219,7 @@ void Initial_IC(struct platform_ecx336af_data *pdata)
 	ecx336af_write_reg(0x05, 0xC0);
 	ecx336af_write_reg(0x06, 0x00);
 	ecx336af_write_reg(0x07, 0x40);
-	ecx336af_write_reg(0x08, 0x0F);
+	ecx336af_write_reg(0x08, 0x04);
 	ecx336af_write_reg(0x09, 0x00);
 	ecx336af_write_reg(0x0A, 0x10);
 	ecx336af_write_reg(0x0B, 0x00);
@@ -255,7 +255,7 @@ void Initial_IC(struct platform_ecx336af_data *pdata)
 	ecx336af_write_reg(0x27, 0x40);
 	ecx336af_write_reg(0x28, 0x50);
 	ecx336af_write_reg(0x29, 0x0B);
-	ecx336af_write_reg(0x2A, 0xDA);
+	ecx336af_write_reg(0x2A, 0xFF);
 	ecx336af_write_reg(0x2B, 0x46);
 	ecx336af_write_reg(0x2C, 0x02);
 	ecx336af_write_reg(0x2D, 0x7A);
@@ -346,7 +346,7 @@ void Initial_IC(struct platform_ecx336af_data *pdata)
 	ecx336af_write_reg(0x7D, 0x00);
 	ecx336af_write_reg(0x7E, 0x00);
 	ecx336af_write_reg(0x7F, 0x00);
-        ecx336af_write_reg(0x00, 0x0F);//03 0e
+        ecx336af_write_reg(0x00, 0x0B);//03 0e
 
 	if (DEBUG_REG)
 	{
