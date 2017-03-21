@@ -49,7 +49,7 @@ uint8_t battery_init_para[][32] = {
 #ifdef CONFIG_300MAH_RAYPAI_CAPACITY_BATTERY
 uint8_t battery_init_para[][32] = { 
         {   
-		0x09, 0xD0, 0x0B, 0xAE, 0x0B, 0xD8, 0x0B, 0xFB,
+		0x09, 0xD0, 0x0B, 0xAE, 0x0B, 0xD8, 0x0B, 0xFA,
 		0x0C, 0x0D, 0x0C, 0x27, 0x0C, 0x4A, 0x0C, 0x81,
 		0x0C, 0xBF, 0x0D, 0x02, 0x0D, 0x69, 0x01, 0x2C,
 		0x00, 0xA8, 0x0F, 0xC8, 0x05, 0x2C, 0x22, 0x56
@@ -209,6 +209,17 @@ uint8_t battery_init_para[][32] = {
 };
 #endif
 
+#ifdef CONFIG_850MAH_RAYPAI_CAPACITY_BATTERY
+uint8_t battery_init_para[][32] = {
+	{
+		0x0A, 0x2C, 0x0B, 0x9C, 0x0B, 0xD7, 0x0B, 0xF5,
+		0x0C, 0x0C, 0x0C, 0x26, 0x0C, 0x52, 0x0C, 0x8C,
+		0x0C, 0xE1, 0x0D, 0x35, 0x0D, 0xDB, 0x03, 0x52,
+		0x00, 0x91, 0x0F, 0xC8, 0x05, 0x2C, 0x22, 0x56
+	}
+};
+#endif
+
 #ifdef CONFIG_2000MAH_ZBRZFY_CAPACITY_BATTERY
 uint8_t battery_init_para[][32] = {
 	{
@@ -327,3 +338,51 @@ uint8_t impe_init_para[][20] = {
    OCV_10=3593.8
    OCV_0=3068.2
 */
+
+/*
+  2017/3/2 9:13:43  Version:1.0.4
+  RTotal=346.470588235294
+  RBat=296.470588235294
+  Cavailable=846.222222222222
+  Rsense=50
+  BValue=3435
+  ChargeCompleteVoltage=4350
+  ChargeCompleteCurrent=50
+  C=850
+  I=170
+  Trest=600
+  Tdsg=1800
+  Tlast=1720
+  V0=4331.1
+  V1=4128.8
+  V2=4025.8
+  V3=3922.6
+  V4=3851.9
+  V5=3798.4
+  V6=3765.9
+  V7=3738.5
+  V8=3701.7
+  V9=3630.2
+  V10=3179.8
+  V1L=4067.8
+  V2L=3967.7
+  V3L=3861.4
+  V4L=3789.8
+  V5L=3732.4
+  V6L=3691.8
+  V7L=3650.7
+  V8L=3594.7
+  V9L=3491.8
+  V10L=2999.7
+  OCV_100=4331.1
+  OCV_90=4128.8
+  OCV_80=4025.8
+  OCV_70=3922.6
+  OCV_60=3851.9
+  OCV_50=3798.4
+  OCV_40=3765.9
+  OCV_30=3738.5
+  OCV_20=3701.7
+  OCV_10=3630.2
+  OCV_0=3179.8
+ */

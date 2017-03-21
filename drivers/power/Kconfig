@@ -92,6 +92,11 @@ config 780MAH_RAYPAI_CAPACITY_BATTERY
        help
        Say "Y" to enable 780mAh regularity capacity battery.
 
+config 850MAH_RAYPAI_CAPACITY_BATTERY
+       bool "850 mAh regularity capacity battery for 850mA"
+       help
+       Say "Y" to enable 850mAh regularity capacity battery.
+
 config 600MAH_REGULARITY_CAPACITY_BATTERY
 	  bool "600mAh regularity capacity battery for 600mA"
 	  help
