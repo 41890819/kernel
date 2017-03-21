@@ -80,14 +80,14 @@
 /* ****************************GPIO TP END*********************************** */
 
 /* ****************************GPIO KEY START******************************** */
-#define GPIO_BACK_KEY           GPIO_PD(18)
-#define ACTIVE_LOW_BACK  	0
+/* #define GPIO_BACK_KEY           GPIO_PD(18) */
+/* #define ACTIVE_LOW_BACK  	0 */
 
 #define GPIO_ENDCALL_KEY        GPIO_PA(30)
 #define ACTIVE_LOW_ENDCALL      1
 
-#define GPIO_CAMERA_KEY		GPIO_PA(11)
-#define ACTIVE_LOW_CAMERA	1
+#define GPIO_CAMERA_KEY		GPIO_PD(18)
+#define ACTIVE_LOW_CAMERA	0
 /* ****************************GPIO KEY END********************************** */
 
 /* ****************************GPIO PMU START******************************** */
