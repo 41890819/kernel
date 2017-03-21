@@ -1,0 +1,2 @@
+
+obj-y		+= $(CONFIG_BOARD_NAME)_$(CONFIG_BOARD_VERSION)/

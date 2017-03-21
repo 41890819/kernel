@@ -1,0 +1,54 @@
+#
+# Mouse driver configuration
+#
+menuconfig INPUT_TOUCHPANEL
+	bool "Touchpanel"
+	default n
+	help
+	  Say Y here, and a list of supported touch panel will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if INPUT_TOUCHPANEL
+
+config TOUCHPANEL_VIRTUAL
+       tristate "virtual touch panel support"
+       default n
+
+config TOUCHPANEL_ZET6231
+       tristate "zet6231 touch panel support"
+       depends on I2C
+       default n
+
+config TOUCHPANEL_FT3X07
+       tristate "ft3x07 touch panel support"
+       depends on I2C
+       default n
+ 
+config TOUCHPANEL_SP948T
+       tristate "sp948t touch panel support"
+       depends on I2C
+       default n
+
+config TOUCHPANEL_CP2615
+       tristate "cp2615 touch panel support"
+       depends on I2C
+       default n
+
+config TOUCHPANEL_CP2615_PDMA
+       tristate "cp2615 touch panel support with PDMA"
+       depends on I2C && GLASS_PDMA
+       default n
+
+config TOUCHPANEL_IT7236
+       tristate "it7236 touch panel support"
+       depends on I2C
+       default n
+
+config TOUCHPANEL_IT7236_KEY
+       tristate "it7236 touch panel key event support"
+       depends on I2C
+       default n
+
+endif

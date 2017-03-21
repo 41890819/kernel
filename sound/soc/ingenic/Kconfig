@@ -1,0 +1,26 @@
+config SND_JZ_SOC_AIC_DMA
+	tristate "SoC Audio (AIC DMA) for Ingenic xburst chip"
+	depends on JZRISC && SND_SOC
+	select SND_JZ_SOC_AIC_CORE
+	help
+	  Say Y or M if you want to add support for codecs attached to
+	  the Jz47XX AC97, I2S controller.
+
+config SND_JZ_SOC_SPDIF
+        tristate
+
+config SND_JZ_SOC_AIC_CORE
+        tristate
+
+config SUPPORT_AIC_MSB
+	tristate
+	depends on SOC_M200
+
+config SND_JZ_SOC_MENSA_SPDIF
+	tristate "SoC SPDIF Audio support for JZ4775 mensa reference board with internal codec"
+	depends on SND_JZ_SOC_AIC_DMA
+	depends on SOC_4775
+	select SND_JZ_SOC_SPDIF
+	select SND_SOC_SPDIF
+	help
+	  Say Y if you want to add audio support for JZ4775 Mensa reference board with internal codec.

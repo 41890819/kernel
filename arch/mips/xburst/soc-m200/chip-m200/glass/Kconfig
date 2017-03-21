@@ -1,0 +1,208 @@
+choice
+	prompt "Board name"
+	depends on PRODUCT_GLASS
+	default BOARD_COLDWAVE
+
+config BOARD_COLDWAVE
+       bool "coldwave"
+       depends on PRODUCT_GLASS
+
+config BOARD_COLDWAVE_OLED
+       bool "coldwave oled"
+       depends on PRODUCT_GLASS
+
+config BOARD_NETEASE
+       bool "netease"
+       depends on PRODUCT_GLASS
+
+config BOARD_CRUISE
+       bool "cruise"
+       depends on PRODUCT_GLASS
+
+config BOARD_CRUISE_UMS
+       bool "cruise_ums"
+       depends on PRODUCT_GLASS
+
+config BOARD_MONDAY
+       bool "monday"
+       depends on PRODUCT_GLASS
+
+config BOARD_OCTOBER
+       bool "october"
+       depends on PRODUCT_GLASS
+
+config BOARD_REGULARITY
+       bool "regularity"
+       depends on PRODUCT_GLASS
+
+config BOARD_UMBRELLA
+       bool "umbrella"
+       depends on PRODUCT_GLASS
+
+config BOARD_SHAREWARE
+       bool "shareware"
+       depends on PRODUCT_GLASS
+
+config BOARD_LANTERN
+       bool "lantern"
+       depends on PRODUCT_GLASS
+
+config BOARD_PARAMOUNT
+       bool "paramount"
+       depends on PRODUCT_GLASS
+
+config BOARD_TSYC
+       bool "tsyc"
+       depends on PRODUCT_GLASS
+
+config BOARD_WESEEING
+       bool "weseeing"
+       depends on PRODUCT_GLASS
+
+config BOARD_MAGIC
+       bool "magic"
+       depends on PRODUCT_GLASS
+
+config BOARD_KEPTER
+       bool "kepter"
+       depends on PRODUCT_GLASS
+
+config BOARD_MY
+       bool "my"
+       depends on PRODUCT_GLASS
+
+config BOARD_LG1
+       bool "LG1"
+       depends on PRODUCT_GLASS
+
+config BOARD_PATEO
+       bool "pateo"
+       depends on PRODUCT_GLASS
+
+config BOARD_SHIELD
+       bool "shield"
+       depends on PRODUCT_GLASS
+
+config BOARD_RAYPAI
+       bool "raypai"
+       depends on PRODUCT_GLASS
+
+config BOARD_DISATCH
+       bool "disatch"
+       depends on PRODUCT_GLASS
+
+config BOARD_MASOUD
+       bool "masoud"
+       depends on PRODUCT_GLASS
+
+config BOARD_M200S_ZBRZFY
+       bool "m200s_zbrzfy"
+       depends on PRODUCT_GLASS
+
+config BOARD_M200S_ZBRZFY_D
+       bool "m200s_zbrzfy_d"
+       depends on PRODUCT_GLASS
+
+config BOARD_M200S_ZBRZFY_C
+       bool "m200s_zbrzfy_c"
+       depends on PRODUCT_GLASS
+
+config BOARD_M200S_ZBRZFY_A
+       bool "m200s_zbrzfy_a"
+       depends on PRODUCT_GLASS
+
+config BOARD_MARKEN
+       bool "marken"
+       depends on PRODUCT_GLASS
+
+config BOARD_ZBRV23
+       bool "zbrv23"
+       depends on PRODUCT_GLASS
+
+config BOARD_GLINUX
+       bool "glinux"
+       depends on PRODUCT_GLASS
+
+endchoice
+
+config BOARD_NAME
+	string
+	default "coldwave" if BOARD_COLDWAVE
+	default "coldwave_oled" if BOARD_COLDWAVE_OLED
+	default "netease" if BOARD_NETEASE
+	default "cruise" if BOARD_CRUISE
+	default "cruise_ums" if BOARD_CRUISE_UMS
+	default "monday" if BOARD_MONDAY
+	default "october" if BOARD_OCTOBER
+	default "regularity" if BOARD_REGULARITY
+	default "umbrella" if BOARD_UMBRELLA
+	default "shareware" if BOARD_SHAREWARE
+	default "lantern" if BOARD_LANTERN
+	default "paramount" if BOARD_PARAMOUNT
+	default "tsyc" if BOARD_TSYC
+	default "weseeing" if BOARD_WESEEING
+	default "magic" if BOARD_MAGIC
+	default "kepter" if BOARD_KEPTER
+	default "my" if BOARD_MY
+	default "LG1" if BOARD_LG1
+	default "pateo" if BOARD_PATEO
+	default "shield" if BOARD_SHIELD
+	default "raypai" if BOARD_RAYPAI
+	default "disatch" if BOARD_DISATCH
+	default "masoud" if BOARD_MASOUD
+	default "m200s_zbrzfy" if BOARD_M200S_ZBRZFY
+	default "m200s_zbrzfy_d" if BOARD_M200S_ZBRZFY_D
+	default "m200s_zbrzfy_c" if BOARD_M200S_ZBRZFY_C
+	default "m200s_zbrzfy_a" if BOARD_M200S_ZBRZFY_A
+	default "marken" if BOARD_MARKEN
+	default "zbrv23" if BOARD_ZBRV23
+	default "glinux" if BOARD_GLINUX
+
+choice
+	prompt "Board version"
+	depends on PRODUCT_GLASS
+	default BOARD_NO_VERSION
+
+config BOARD_VERSION_NULL
+       bool "null"
+       depends on PRODUCT_GLASS
+
+config BOARD_VERSION_V10
+       bool "version1"
+       depends on PRODUCT_GLASS
+
+config BOARD_VERSION_V20
+       bool "version2"
+       depends on PRODUCT_GLASS
+
+config BOARD_VERSION_V23
+       bool "version2.3"
+       depends on PRODUCT_GLASS
+
+config BOARD_VERSION_LCOS
+       bool "version_lcos"
+       depends on PRODUCT_GLASS
+
+config BOARD_VERSION_OLED
+       bool "version_oled"
+       depends on PRODUCT_GLASS
+
+config BOARD_VERSION_WC
+       bool "version_WC"
+       depends on PRODUCT_GLASS
+
+config BOARD_VERSION_DS
+       bool "version_DS"
+       depends on PRODUCT_GLASS
+
+endchoice
+
+config BOARD_VERSION
+       string
+       default "v10" if BOARD_VERSION_V10
+       default "v20" if BOARD_VERSION_V20
+       default "v23" if BOARD_VERSION_V23
+       default "lcos" if BOARD_VERSION_LCOS
+       default "oled" if BOARD_VERSION_OLED
+       default "wc" if BOARD_VERSION_WC
+       default "ds" if BOARD_VERSION_DS
