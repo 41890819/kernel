@@ -95,6 +95,8 @@ extern struct isp_reg_t ov8865_setting[];
 #endif
 #ifdef CONFIG_VIDEO_OV8856
 extern struct isp_reg_t ov8856_setting[];
+extern struct isp_reg_t ov8856_setting_face_exposure[];
+extern struct isp_reg_t ov8856_setting_normal_exposure[];
 extern struct isp_reg_t ov8856_setting_ccm_colour[];
 extern struct isp_reg_t ov8856_setting_ccm_gray[];
 #endif
@@ -139,6 +141,8 @@ static const struct isp_sensor_setting isp_sensor_settings[] = {
 		.isp_setting = ov8856_setting,
 		.isp_setting_ccm_colour = ov8856_setting_ccm_colour,
 		.isp_setting_ccm_gray = ov8856_setting_ccm_gray,
+		.isp_setting_face_exposure = ov8856_setting_face_exposure,
+		.isp_setting_normal_exposure = ov8856_setting_normal_exposure,
 	},
 #endif
 #ifdef CONFIG_VIDEO_OV4689
@@ -1052,6 +1056,43 @@ static int isp_set_color_parameters(struct isp_device *isp)
 	return 0;
 }
 
+static int isp_set_face_exposure_parameters(struct isp_device *isp)
+{
+	struct isp_sensor_setting* isp_sensor_setting;
+	struct isp_reg_t* isp_setting_exposure = NULL;
+	int i = 0;
+	int exposure = isp->face_exposure;
+
+	for (i = 0; i < ISP_SETTING_SIZES; i++) {
+		isp_sensor_setting = &isp_sensor_settings[i];
+		if (0x8856 == isp_sensor_setting->chip_id) {
+			if (exposure == 0) {
+				isp_setting_exposure = isp_sensor_setting->isp_setting_face_exposure;
+			} else {
+				isp_setting_exposure = isp_sensor_setting->isp_setting_normal_exposure;
+			}
+			break;
+		}
+	}
+
+	if (isp_setting_exposure != NULL) {
+		for (i = 0; isp_setting_exposure[i].reg != OVISP_REG_END; i++) {
+			if (isp_setting_exposure[i].reg & 0x10000)
+				isp_firmware_writeb(isp, isp_setting_exposure[i].value, isp_setting_exposure[i].reg);
+			else if (isp_setting_exposure[i].reg & 0x60000)
+				isp_reg_writeb(isp, isp_setting_exposure[i].value, isp_setting_exposure[i].reg);
+		}
+	} else {
+		ISP_PRINT(ISP_ERROR, "%s[%d] don't have isp setting %d\n", __func__, __LINE__);
+		return -1;
+	}
+#if 0
+	for (i = 0; isp_setting_exposure[i].reg != OVISP_REG_END; i++)
+		printk("%x:%ud\n",isp_setting_exposure[i].reg,isp_reg_readb(isp, isp_setting_exposure[i].reg));
+#endif
+	return 0;
+}
+
 static int isp_set_af_parameters(struct isp_device *isp)
 {
 	struct isp_parm *iparm = &isp->parm;
@@ -1894,6 +1935,7 @@ static int isp_offline_process(struct isp_device * isp, struct isp_input_parm *i
 	isp_firmware_writeb(isp, output->width & 0xff, 0x1f02b);/*m_uv*/
 	/*zoom in*/
 	zoom_ratio = isp_get_zoom_ratio(isp, zoom);
+	/* zoom_ratio = 0x400; */
 	isp_firmware_writeb(isp, zoom_ratio >> 8, 0x1f084);
 	isp_firmware_writeb(isp, zoom_ratio & 0xFF, 0x1f085);
 
@@ -1973,6 +2015,7 @@ static int isp_init(struct isp_device *isp, void *data)
 	isp->parm.out_videos = 1; // its default value is 1.
 	isp->parm.c_video = 0; // the first video.
 	isp->light = LIGHT_OFF;
+	isp->face_exposure = -1;
 
 	isp_mfp_init(isp);
 
@@ -2776,7 +2819,13 @@ static int isp_s_ctrl(struct isp_device *isp, struct v4l2_control *ctrl)
 			isp_set_color_parameters(isp);
 		}
 		break;
-
+	case V4L2_CID_ISP_FACE_EXPOSURE:
+		ISP_PRINT(ISP_INFO, "set isp setting base of face exposurce %d\n", ctrl->value);
+		if (ctrl->value != isp->face_exposure){
+			isp->face_exposure = ctrl->value;
+			isp_set_face_exposure_parameters(isp);
+		}
+		break;
 	default:
 		ret = -EINVAL;
 		break;
@@ -2923,8 +2972,10 @@ static int isp_process_raw(struct isp_device *isp, struct isp_format *ifmt,
 	struct isp_input_parm input = {0};
 	struct isp_output_parm output = {0};
 
-//	printk("@@@@@ width=%d height=%d dev_fourcc=0x%08x fourcc=0x%08x\n",
-//				ifmt->vfmt.width,ifmt->vfmt.height,ifmt->vfmt.dev_fourcc,ifmt->vfmt.fourcc);
+	/* printk("@@@@@ width=%d height=%d dev_fourcc=0x%08x fourcc=0x%08x\n", */
+				/* ifmt->vfmt.width,ifmt->vfmt.height,ifmt->vfmt.dev_fourcc,ifmt->vfmt.fourcc); */
+	/*ifmt->vfmt.width = 1600;
+	ifmt->vfmt.height = 1200; */
 
 	ret = isp_set_input_parm(isp, &ifmt->vfmt, &input);
 	if(ret)

@@ -283,6 +283,7 @@ struct isp_device {
 	int tlb_flag; // 0 disable; 1 enble
 	struct list_head tlb_list;
 	int light;
+	int face_exposure;
 
 };
 
@@ -291,6 +292,8 @@ struct isp_sensor_setting {
 	struct isp_reg_t* isp_setting;
 	struct isp_reg_t* isp_setting_ccm_colour;
 	struct isp_reg_t* isp_setting_ccm_gray;
+	struct isp_reg_t* isp_setting_face_exposure;
+	struct isp_reg_t* isp_setting_normal_exposure;
 };
 
 int isp_device_init(struct isp_device* isp);
