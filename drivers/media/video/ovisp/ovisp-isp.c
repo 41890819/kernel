@@ -2821,10 +2821,8 @@ static int isp_s_ctrl(struct isp_device *isp, struct v4l2_control *ctrl)
 		break;
 	case V4L2_CID_ISP_FACE_EXPOSURE:
 		ISP_PRINT(ISP_INFO, "set isp setting base of face exposurce %d\n", ctrl->value);
-		if (ctrl->value != isp->face_exposure){
-			isp->face_exposure = ctrl->value;
-			isp_set_face_exposure_parameters(isp);
-		}
+		isp->face_exposure = ctrl->value;
+		isp_set_face_exposure_parameters(isp);
 		break;
 	default:
 		ret = -EINVAL;
