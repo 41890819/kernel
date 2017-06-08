@@ -317,6 +317,14 @@ static int __init board_base_init(void)
 char board_type[128];
 const char *get_board_type(void)
 {
+#if (defined CONFIG_BOARD_VERSION_OLED) && (defined CONFIG_BOARD_RAYPAI)
+  strcpy(board_type, CONFIG_BOARD_NAME);
+  strcat(board_type, "_");
+  strcat(board_type, CONFIG_BOARD_VERSION);
+
+  return board_type;
+#endif
+
 #ifdef CONFIG_BOARD_VERSION_DS
   
   strcpy(board_type, CONFIG_BOARD_NAME);
