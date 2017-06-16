@@ -99,7 +99,7 @@
 /* ****************************GPIO PMU END********************************** */
 
 /* ****************************GPIO GSENSOR START**************************** */
-#define USE_INV_MPU_POWE_VIO_CTRL    0
+#define USE_INV_MPU_POWE_VIO_CTRL    1
 #define GPIO_GSENSOR_INT     GPIO_PA(15)
 /* ****************************GPIO GSENSOR END****************************** */
 
