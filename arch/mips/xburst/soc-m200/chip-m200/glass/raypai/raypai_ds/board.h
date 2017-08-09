@@ -16,7 +16,7 @@
 #endif
 
 #ifdef CONFIG_BACKLIGHT_PWM_EN
-#define BACKLIGHT_PWM_EN GPIO_PD(27)
+#define BACKLIGHT_PWM_EN GPIO_PE(01)
 #endif
 
 #ifdef CONFIG_BACKLIGHT_DIGITAL_PULSE
@@ -70,11 +70,8 @@
 /* ****************************GPIO SPI END********************************** */
 
 /* ****************************GPIO TP START********************************* */
-#ifdef CONFIG_TOUCHPANEL_IT7236
-#define GPIO_7236_INT           GPIO_PA(29)
-#endif
-#ifdef CONFIG_TOUCHPANEL_IT7236_KEY
-#define GPIO_7236_INT           GPIO_PA(29)
+#ifdef CONFIG_TOUCHPANEL_FT3X07
+#define GPIO_TP_INT		GPIO_PA(29)
 #endif
 /* ****************************GPIO TP END*********************************** */
 
@@ -102,7 +99,7 @@
 /* ****************************GPIO PMU END********************************** */
 
 /* ****************************GPIO GSENSOR START**************************** */
-#define USE_INV_MPU_POWE_VIO_CTRL    0
+#define USE_INV_MPU_POWE_VIO_CTRL    1
 #define GPIO_GSENSOR_INT     GPIO_PA(15)
 /* ****************************GPIO GSENSOR END****************************** */
 
@@ -186,7 +183,7 @@
 /* ****************************GPIO WIFI START******************************* */
 //#define HOST_WAKE_WL	GPIO_PA(10)
 #define WL_WAKE_HOST	GPIO_PA(9)
-#define WL_REG_EN	GPIO_PA(8)
+#define WL_REG_EN	GPIO_PA(2)
 #if 0
 #define GPIO_WLAN_REG_ON	GPIO_PG(7)
 #define GPIO_WLAN_INT	        GPIO_PG(8)
@@ -204,7 +201,7 @@
 /* BT gpio */
 #define HOST_WAKE_BT	GPIO_PA(1)
 #define BT_WAKE_HOST	GPIO_PA(0)
-#define BT_REG_EN	GPIO_PA(2)
+#define BT_REG_EN	GPIO_PA(8)
 #define BT_UART_RTS	GPIO_PF(2)
 #define BLUETOOTH_UPORT_NAME  "ttyS0"
 #define BLUETOOTH_UART_GPIO_PORT    GPIO_PORT_F   

@@ -3,11 +3,8 @@
 #include <mach/jzmmc.h>
 #include <linux/bcm_pm_core.h>
 #include <linux/delay.h>
-#include <linux/fs.h>
-#include <linux/wlan_plat.h>
 
 #include <board_base.h>
-#define IMPORT_WIFIMAC_BY_SELF
 
 static int ENABLE_32K_CNT = 0;
 void enable_clk32k(void)
@@ -158,58 +155,6 @@ struct wifi_data {
 	int                             wifi_reset;
 };
 
-#ifdef IMPORT_WIFIMAC_BY_SELF
-#define WIFIMAC_ADDR_PATH "/data/misc/wifi/wifimac.txt"
-
-static int get_wifi_mac_addr(unsigned char* buf)
-{
-	struct file *fp = NULL;
-	mm_segment_t fs;
-
-	unsigned char source_addr[18];
-	loff_t pos = 0;
-	unsigned char *head, *end;
-	int i = 0;
-
-	fp = filp_open(WIFIMAC_ADDR_PATH, O_RDONLY,  0444);
-	if (IS_ERR(fp)) {
-
-		printk("Can not access wifi mac file : %s\n",WIFIMAC_ADDR_PATH);
-		return -EFAULT;
-	}else{
-		fs = get_fs();
-		set_fs(KERNEL_DS);
-
-		vfs_read(fp, source_addr, 18, &pos);
-		source_addr[17] = ':';
-
-		head = end = source_addr;
-		for(i=0; i<6; i++) {
-			while (end && (*end != ':') )
-				end++;
-
-			if (end && (*end == ':') )
-				*end = '\0';
-
-			buf[i] = simple_strtoul(head, NULL, 16 );
-
-			if (end) {
-				end++;
-				head = end;
-			}
-			printk("wifi mac %02x \n", buf[i]);
-		}
-		set_fs(fs);
-		filp_close(fp, NULL);
-	}
-
-	return 0;
-}
-struct wifi_platform_data bcmdhd_wlan_pdata = {
-  .get_mac_addr = get_wifi_mac_addr,
-};
-#endif
-
 static struct wifi_data bcm_data;
 
 /*The function should be called iw8103,but do not modify because of compatibility */
@@ -267,6 +212,7 @@ EXPORT_SYMBOL(bcm_wlan_init);
 
 int IW8101_wlan_power_on(int flag)
 {
+
         static struct wake_lock	*wifi_wake_lock = &bcm_data.wifi_wake_lock;
 #ifdef WL_REG_EN
 	int wl_reg_on	= WL_REG_EN;
@@ -274,7 +220,6 @@ int IW8101_wlan_power_on(int flag)
 #ifdef WL_RST_EN
 	int reset = bcm_data.wifi_reset;
 #endif
-  printk("IW8101_wlan_power_on in\n");
 
 	if (wifi_wake_lock == NULL)
 		pr_warn("%s: invalid wifi_wake_lock\n", __func__);
@@ -300,7 +245,9 @@ start:
 			gpio_direction_output(wl_reg_on,1);
 			msleep(200);
 #endif
-			msleep(200);
+
+			jzmmc_clk_ctrl(1, 1);
+			jzmmc_manual_detect(1, 1);
 #ifdef WL_RST_EN
 			gpio_direction_output(reset, 0);
 			msleep(200);
@@ -363,7 +310,8 @@ start:
 #ifdef WL_RST_EN
 			gpio_direction_output(reset, 0);
 #endif
-			msleep(200);
+			jzmmc_manual_detect(1, 0);
+			jzmmc_clk_ctrl(1, 0);
 			break;
 
 		case NORMAL:
@@ -379,7 +327,7 @@ start:
 			gpio_direction_output(wl_reg_on,0);
 #endif
 			msleep(200);
-//			jzmmc_manual_detect(1, 0);
+			jzmmc_manual_detect(1, 0);
 			break;
 	}
 

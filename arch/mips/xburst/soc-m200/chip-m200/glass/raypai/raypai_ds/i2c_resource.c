@@ -43,10 +43,10 @@ struct i2c_board_info jz_i2c1_devs[] __initdata = {
 
 #if (defined(CONFIG_SOFT_I2C2_GPIO_V12_JZ) || defined(CONFIG_I2C2_V12_JZ))
 struct i2c_board_info jz_i2c2_devs[] __initdata = {
-#if (defined(CONFIG_TOUCHPANEL_IT7236) || defined(CONFIG_TOUCHPANEL_IT7236_KEY))
+#ifdef CONFIG_TOUCHPANEL_FT3X07
 	{
-		I2C_BOARD_INFO("ite7236_tp_i2c", 0x46),
-		.irq = GPIO_7236_INT,
+		I2C_BOARD_INFO("ft3x07", 0x38),
+		.irq = GPIO_TP_INT,
 	},
 #endif
 };

@@ -8,12 +8,12 @@ __initdata int gpio_ss_table[][2] = {
 	{32*0+5,	GSS_INPUT_NOPULL	},	/* MSC0_D5 */
 	{32*0+6,	GSS_INPUT_NOPULL	},	/* MSC0_D6 */
 	{32*0+7,	GSS_INPUT_NOPULL	},	/* MSC0_D7 */
-	{32*0+8,	GSS_IGNORE		},	/* WL_REG_EN */
+	{32*0+8,	GSS_OUTPUT_HIGH		},	/* WL_REG_EN */
 	{32*0+9,	GSS_IGNORE		},	/* WL_WAKE_HOST */
-	{32*0+10,	GSS_IGNORE		},	/* HOST_WAKE_WL */
-	{32*0+11,	GSS_INPUT_NOPULL	},	/* HOST_WAKE_NFC */
+	{32*0+10,	GSS_INPUT_PULL		},	/* HOST_WAKE_WL */
+	{32*0+11,	GSS_IGNORE		},	/* CAMERA_DVDD_EN */
 	{32*0+12,	GSS_OUTPUT_LOW		},	/* SHUTDOWN_N */
-	{32*0+13,	GSS_IGNORE      	},	/* CAMERA_PWDN_N */
+	{32*0+13,	GSS_INPUT_NOPULL	},	/* USB_ID */
 	{32*0+14,	GSS_INPUT_NOPULL	},	/* USB_DETE */
 	{32*0+15,	GSS_INPUT_NOPULL	},	/* SENSOR_INT */
 	{32*0+18,	GSS_INPUT_PULL		},	/* MSC0_CLK */
@@ -57,15 +57,15 @@ __initdata int gpio_ss_table[][2] = {
 	{32*3+19,	GSS_INPUT_PULL		},	/* LCD_RESET_N */
 	{32*3+26,	GSS_IGNORE		},	/* UART1_TXD */
 	{32*3+27,	GSS_INPUT_PULL		},	/* CIM_RST */
-	{32*3+28,	GSS_IGNORE      	},	/* AF_EN */
+	{32*3+28,	GSS_INPUT_NOPULL	},	/* SSI_CLK */
 	{32*3+29,	GSS_IGNORE		},	/* UART1_RXD */
 	{32*3+30,	GSS_INPUT_NOPULL	},	/* SMB0_SDA */
 	{32*3+31,	GSS_INPUT_NOPULL	},	/* SMB0_CLK */
 	{32*4+0,	GSS_INPUT_NOPULL	},	/* SSI_DO */
 	{32*4+1,	GSS_INPUT_NOPULL	},	/* LCD_PWM */
-	{32*4+2,	GSS_IGNORE      	},	/* CIM_MCLK */
+	{32*4+2,	GSS_INPUT_NOPULL	},	/* CIM_MCLK */
 	{32*4+3,	GSS_INPUT_NOPULL	},	/* SSI_DI */
-	{32*4+10,	GSS_IGNORE		},	/* HP_DETECT */
+	{32*4+10,	GSS_OUTPUT_LOW		},	/* DRVVBUS */
 	{32*4+20,	GSS_IGNORE		},	/* SDIO_D0_WIFI */
 	{32*4+21,	GSS_IGNORE		},	/* SDIO_D1_WIFI */
 	{32*4+22,	GSS_IGNORE		},	/* SDIO_D2_WIFI */
