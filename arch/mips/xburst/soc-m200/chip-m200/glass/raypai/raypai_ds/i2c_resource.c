@@ -15,12 +15,20 @@ struct bcm2079x_platform_data bcm2079x_pdata = {
 
 #if (defined(CONFIG_SOFT_I2C0_GPIO_V12_JZ) || defined(CONFIG_I2C0_V12_JZ))
 struct i2c_board_info jz_i2c0_devs[] __initdata = {
+#ifdef CONFIG_SENSOR_ISL29035
+	{
+		I2C_BOARD_INFO("isl29035",0x44),
+		.irq = GPIO_ISL29035_INT,          
+		.platform_data = NULL,
+	},
+#endif
+
 #ifdef CONFIG_INV_MPU_IIO
 	{
 		I2C_BOARD_INFO("mpu6500", 0x68),
 		.irq = (IRQ_GPIO_BASE + GPIO_GSENSOR_INT),
 		.platform_data = &mpu9250_platform_data,
-	},asdf
+	},
 #endif /*CONFIG_INV_MPU_IIO*/
 #if defined(CONFIG_BCM2079X_NFC)
 	{
@@ -79,13 +87,6 @@ struct i2c_board_info jz_i2c6_devs[] __initdata = {
 	},
 #endif
 
-#ifdef CONFIG_SENSOR_ISL29035
-	{
-		I2C_BOARD_INFO("isl29035",0x44),
-		.irq = GPIO_ISL29035_INT,          
-		.platform_data = NULL,
-	},
-#endif
 
 #ifdef CONFIG_SENSORS_APDS990X
 	{
