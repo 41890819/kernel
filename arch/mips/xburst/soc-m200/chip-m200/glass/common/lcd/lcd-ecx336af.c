@@ -103,11 +103,11 @@ extern void ecx336af_backlight(unsigned char brightness);
 static int backlight_notify(struct device *dev, int brightness)
 {
 	if (brightness > 0 && brightness < 27){
-	  brightness = 196;
+	  brightness = 140;
 	}else if (brightness >= 27 && brightness < 94){
-	  brightness = 205;
+	  brightness = 165;
 	}else if (brightness >= 94 && brightness < 158){
-	  brightness = 218;
+	  brightness = 200;
 	}else if (brightness >= 158 && brightness < 222){
 	  brightness = 225;
 	}else if (brightness >= 222 && brightness < 256){

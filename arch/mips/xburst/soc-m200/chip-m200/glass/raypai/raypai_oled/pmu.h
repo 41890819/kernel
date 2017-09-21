@@ -113,11 +113,11 @@
 #define CH_VFCHG	 0x03	/* VFCHG	= 0 - 4 (4.05v, 4.10v, 4.15v, 4.20v, 4.35v) */
 #define	CH_VRCHG 	 0x01	/* VRCHG	= 0 - 4 (3.85v, 3.90v, 3.95v, 4.00v, 4.10v) */
 #define CH_VBATOVSET 	 0x0	/* VBATOVSET	= 0 or 1 (0 : 4.38v(up)/3.95v(down) 1: 4.53v(up)/4.10v(down)) */
-#define CH_ICHG	  	 0x09	/* ICHG		= 0 - 0x1D (100mA - 3000mA) */
+#define CH_ICHG	  	 0x15	/* ICHG		= 0 - 0x1D (100mA - 3000mA) */
 #define CH_ILIM_ADP 	 0x0e	/* ILIM_ADP	= 0 - 0x1D (100mA - 3000mA) */
 #define CH_ILIM_USB 	 0x0e	/* ILIM_USB	= 0 - 0x1D (100mA - 3000mA) */
 #define CH_ICCHG 	 0x01	/* ICCHG	= 0 - 3 (50mA 100mA 150mA 200mA) */
-#define FG_TARGET_VSYS   3000	/* This value is the target one to DSOC=0% */
+#define FG_TARGET_VSYS   3600	/* This value is the target one to DSOC=0% */
 #define FG_TARGET_IBAT   100    /* This value is the target one to DSOC=0% */
 #define FG_POFF_VBAT 	 0	/* setting value of 0 per Vbat */
 #define FG_RSENSE_VAL	 100	/* setting value of R Sense */

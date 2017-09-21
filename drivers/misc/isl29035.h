@@ -50,7 +50,7 @@ enum {
 #define PERSIST                  1
 #define LUX_RANGE                1
 #define ADC_RES                  1
-#define TOTAL_LEVEL              10
+#define TOTAL_LEVEL              20
 
 #define light_attr(_name) \
 static struct kobj_attribute _name##_attr = {	\

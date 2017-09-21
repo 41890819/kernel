@@ -299,6 +299,8 @@ static int isl29035_resume(struct i2c_client *client)
 {
 	struct isl29035_data *dev = i2c_get_clientdata(client);
 	printk("isl29035_resume in %d\n", dev->enabled);
+
+	schedule_delayed_work(&dev->dwork, 0);
 	// Initial ISL29035
 	if (dev->enabled){
 	  __cancel_delayed_work(&dev->resumework);
