@@ -171,6 +171,7 @@ static int pwm_backlight_update_status(struct backlight_device *bl)
 	}
 #else
 	pb->cur_brightness = brightness;
+	brightness = 255 - brightness;
 	if (brightness == 0) {
 		pwm_config(pb->pwm, 0, pb->period);
 		pwm_disable(pb->pwm);
